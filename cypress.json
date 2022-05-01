@@ -1,0 +1,4 @@
+{
+    "watchforfilechanges" :false,
+    "defaultCommandTimeout":5000
+}
