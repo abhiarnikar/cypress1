@@ -71,9 +71,21 @@ describe('traverse method in cypress',()=>{
         cy.visit('https://en.wikipedia.org/wiki/Main_Page')
         cy.get('.vector-menu-content-list').children().filter('#t-specialpages').should('have.text','Special pages')
       })
-      //not()
-      it.only('To remove DOM element(s) from the set of elements, use the .not() command',()=>{
+      //parent()
+      it('To get parent DOM element of elements, use the .parent() command',()=>{
         cy.visit('https://en.wikipedia.org/wiki/Main_Page')
-        cy.get('.vector-menu-content-list').children().not('#n-currentevents').should('have.text','Current events')
+        cy.get('#n-contactpage').parent().should('have.class','vector-menu-content-list')
+      
       })
+      //parents()
+      it('To get parents DOM element of elements, use the .parents() command',()=>{
+        cy.visit('https://en.wikipedia.org/wiki/Main_Page')
+        cy.get('#n-contactpage').parents().should('have.class','vector-menu-content').should('be.visible')
+      })
+      //parentsUntill()
+      it.only('To get parents DOM element of elements until other element, use the .parentsUntil() command',()=>{
+        cy.visit('https://en.wikipedia.org/wiki/Main_Page')
+        cy.get('#n-contactpage').parentsUntil('[class="vector-menu-content"]').should('have.length',1)
+      })
+
 })
